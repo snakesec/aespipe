@@ -127,3 +127,8 @@ aespipe-v2.4i     April 29 2025
     - Added AES Crypto Extension opcodes for 64-bit arm64 on Linux.
     - aes-armv8sca.S aes-armv8ce.S : add PAC/BTI branch protection
       support. Patch from Emanuele Rocca <emanuele.rocca@arm.com>
+
+aespipe-v2.4j     September 2 2025
+    - Added configure script autodetection for 32-bit ARM -marm compile
+      flag. This option is needed with some compilers that default to
+      generating code in Thumb mode.

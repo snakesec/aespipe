@@ -1,7 +1,7 @@
 /*
  *  aespipe.c
  *
- *  Written by Jari Ruusu, April 29 2025
+ *  Written by Jari Ruusu, August 15 2025
  *
  *  Copyright 2002-2025 by Jari Ruusu.
  *  Redistribution of this file is permitted under the GNU Public License.
@@ -1271,7 +1271,7 @@ int main(int argc, char **argv)
         if(!strcmp(*argv, "-") || (**argv != '-')) {
             usage:
             fprintf(stderr, "usage: %s [options] <inputfile >outputfile\n"
-                            "version 2.4i  Copyright (c) 2002-2025 Jari Ruusu, (c) 2001 Dr Brian Gladman\n"
+                            "version 2.4j  Copyright (c) 2002-2025 Jari Ruusu, (c) 2001 Dr Brian Gladman\n"
                             "options:  -e aes128|aes192|aes256          =  set key length\n"
                             "          -H sha256|sha384|sha512|rmd160   =  set password hash function\n"
                             "          -d         =  decrypt\n"

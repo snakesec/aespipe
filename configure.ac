@@ -1,7 +1,7 @@
 dnl
 dnl  configure.ac
 dnl
-dnl  Written by Jari Ruusu, April 29 2025
+dnl  Written by Jari Ruusu, August 15 2025
 dnl
 dnl  Copyright 2002-2025 by Jari Ruusu.
 dnl  Redistribution of this file is permitted under the GNU Public License.
@@ -340,6 +340,26 @@ if test "$x_enable_x86asm" = yes -o "$x_enable_amd64asm" = yes -o "$x_enable_arm
 		AC_MSG_RESULT([yes])
 		CFLAGS="${CFLAGS} -fno-pie"
 		LDFLAGS="${LDFLAGS} -no-pie"
+	else
+		AC_MSG_RESULT([no])
+	fi
+	rm -f conftest*
+fi
+
+dnl  32-bit ARM assembler sources are not compatible with Thumb mode
+dnl  If possible, use -marm to disable Thumb mode
+if test "$x_enable_arm32asm" = yes ; then
+	AC_MSG_CHECKING([whether compiler understands -marm])
+	AC_LANG_CONFTEST([AC_LANG_SOURCE([
+	void foobar123(void){}
+	])])
+	${CC} ${CPPFLAGS} ${CFLAGS} -marm -c conftest.c >conftest.X.txt 2>&1
+	x_cc_rv=$?
+	${GREP} "unrecognized option" conftest.X.txt >/dev/null 2>&1
+	x_grep_rv=$?
+	if test "${x_cc_rv}" = 0 -a "${x_grep_rv}" != 0 ; then
+		AC_MSG_RESULT([yes])
+		CFLAGS="${CFLAGS} -marm"
 	else
 		AC_MSG_RESULT([no])
 	fi
